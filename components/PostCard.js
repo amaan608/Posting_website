@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function PostCard({ post, currentUserId, onDelete, onLikeToggle }) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -60,7 +62,7 @@ export default function PostCard({ post, currentUserId, onDelete, onLikeToggle }
     <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between p-4">
-        <div className="flex items-center space-x-3">
+        <Link href={`/user/${post.author.id}`} className="flex items-center space-x-3 hover:opacity-80 transition">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">
             {post.author.name.charAt(0).toUpperCase()}
           </div>
@@ -70,7 +72,7 @@ export default function PostCard({ post, currentUserId, onDelete, onLikeToggle }
               {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
             </p>
           </div>
-        </div>
+        </Link>
 
         {isAuthor && (
           <button
@@ -84,11 +86,15 @@ export default function PostCard({ post, currentUserId, onDelete, onLikeToggle }
       </div>
 
       {/* Image */}
-      <img
-        src={post.imageUrl}
-        alt={post.caption}
-        className="w-full h-96 object-cover"
-      />
+      <div className="relative w-full h-96">
+        <Image
+          src={post.imageUrl}
+          alt={post.caption}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 672px"
+        />
+      </div>
 
       {/* Actions */}
       <div className="p-4">

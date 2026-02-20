@@ -97,7 +97,7 @@ export default function CreatePost({ onClose, onPostCreated }) {
               onChange={(e) => setCaption(e.target.value)}
               placeholder="Write a caption..."
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder:text-gray-500"
               required
             />
           </div>
@@ -110,7 +110,7 @@ export default function CreatePost({ onClose, onPostCreated }) {
               type="file"
               accept="image/*"
               onChange={handleImageChange}
-              className="w-full"
+              className="w-full text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
               required
             />
             {preview && (
